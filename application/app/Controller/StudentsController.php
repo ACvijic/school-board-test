@@ -22,8 +22,14 @@ class StudentsController extends AbstractController
         }
 
         if ($student->board == 'CSM') {
-            echo json_encode($student);
+            echo json_encode([
+                'id' => $student->id,
+                'name' => $student->name,
+                'board' => $student->board,
+                'pass' => $student->getPass(),
+            ]);
         } else {
+            $pass = $student->getPass() ? 1 : 0;
             echo <<<XML
             <student>
                 <id>
@@ -35,6 +41,9 @@ class StudentsController extends AbstractController
                 <board>
                     $student->board
                 </board>
+                <pass>
+                    $pass
+                </pass>
             </student>
 XML;
         }

@@ -18,4 +18,24 @@ class Student
     {
         return $this->board;
     }
+
+    public function getPass(): bool
+    {
+        $pass = false;
+
+        switch ($this->board) {
+            case 'CSM':
+                if ($this->averageGrade >= 7) {
+                    $pass = true;
+                }
+                break;
+            case 'CSMB':
+                if ($this->maxGrade > 8) {
+                    $pass = true;
+                }
+                break;
+        }
+        
+        return $pass;
+    }
 }

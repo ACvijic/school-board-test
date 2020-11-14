@@ -17,11 +17,17 @@ class StudentRepository extends AbstractRepository
     
     public function find(int $id): ?Student
     {
+        $sql = <<<SQL
+            SELECT students.*, AVG(g.grade) as averageGrade, MAX(g.grade) as maxGrade
+            FROM students
+            LEFT JOIN grades g ON students.id = g.student_id
+            WHERE students.id = :id
+SQL;
         $statement =
             $this
                 ->db
-                ->prepare('SELECT * FROM students WHERE id = :id');
-
+                ->prepare($sql);
+                
         $statement instanceof \PDOStatement;
         $statement->bindParam('id', $id);
         $statement->execute();
