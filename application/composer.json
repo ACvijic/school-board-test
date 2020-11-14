@@ -1,0 +1,14 @@
+{
+    "name": "acvij/school-board-test",
+    "description": "",
+    "require": {
+        "php-di/php-di": "^6.0",
+        "altorouter/altorouter": "^1.2",
+        "symfony/http-foundation": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
